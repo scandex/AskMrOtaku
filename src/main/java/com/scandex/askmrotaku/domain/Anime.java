@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "Anime")
-public class Anime {
+public class Anime implements Comparable<Anime> {
 	@Id
 	private String id;
 
@@ -47,6 +47,16 @@ public class Anime {
 
 	@Field("members")
 	private int members;
+
+	private double prediction;
+
+	public double getPrediction() {
+		return prediction;
+	}
+
+	public void setPrediction(double prediction) {
+		this.prediction = prediction;
+	}
 
 	public String getCast() {
 		return cast;
@@ -158,6 +168,13 @@ public class Anime {
 
 	public void setMembers(int members) {
 		this.members = members;
+	}
+
+	@Override
+	public int compareTo(Anime o) {
+		if (this.prediction != o.prediction)
+			return Double.compare(o.prediction, this.prediction);
+		return 0;
 	}
 
 }

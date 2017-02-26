@@ -5,14 +5,16 @@ import java.util.List;
 import org.apache.mahout.cf.taste.model.PreferenceArray;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 
+import com.scandex.askmrotaku.domain.Anime;
+
 public interface IRecommendationService {
-	List<RecommendedItem> recommendUserBased(long userId);
+	List<Anime> recommendUserBased(long userId);
 
-	List<RecommendedItem> recommendItemBased(long userId);
+	List<Anime> recommendC1Based(long userId);
 
-	List<RecommendedItem> recommendC1Based(long userId);
-
-	List<RecommendedItem> recommendC2Based(long userId);
+	List<Anime> recommendC2Based(long userId);
+	
+	List<Anime> getAnimeToReview();
 	
 	void setPreference(long userId, long animeId, double value);
 	
@@ -21,5 +23,5 @@ public interface IRecommendationService {
 	void releaseTemporalId(long id);
 	
 	PreferenceArray getPreferences(long id);
-
+	
 }
