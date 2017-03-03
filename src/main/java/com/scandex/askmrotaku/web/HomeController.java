@@ -8,6 +8,6 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String home() {
-		return "redirect:https://github.com/scandex/AskMrOtaku";
+		return "redirect: https://askmrotaku.firebaseapp.com";
 	}
 }
