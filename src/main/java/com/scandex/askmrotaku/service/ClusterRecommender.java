@@ -41,6 +41,16 @@ public class ClusterRecommender implements IClusterRecommender {
 	public List<Anime> recommendC1(List<Preference> preferences) {
 		List<Anime> resp = new ArrayList<Anime>(animeCluster1);
 		double[] prefClusters = preferenceVector(preferences, 41);
+		for (Preference preference : preferences) {
+			boolean stop = false;
+			for (int j = 0; j < resp.size() && !stop; j++) {
+				if (resp.get(j).getAnimeId() == preference.getItemID()) {
+					resp.remove(j);
+					stop = true;
+				}
+			}
+
+		}
 		for (Anime anime : resp) {
 			double prediction = prefClusters[anime.getCluster1() - 1] * anime.getRating();
 			anime.setPrediction(prediction);
@@ -53,6 +63,17 @@ public class ClusterRecommender implements IClusterRecommender {
 	public List<Anime> recommendC2(List<Preference> preferences) {
 		List<Anime> resp = new ArrayList<Anime>(animeCluster2);
 		double[] prefClusters = preferenceVector(preferences, 40);
+
+		for (Preference preference : preferences) {
+			boolean stop = false;
+			for (int j = 0; j < resp.size() && !stop; j++) {
+				if (resp.get(j).getAnimeId() == preference.getItemID()) {
+					resp.remove(j);
+					stop = true;
+				}
+			}
+
+		}
 		for (Anime anime : resp) {
 			double prediction = prefClusters[anime.getCluster2() - 1] * anime.getRating();
 			anime.setPrediction(prediction);
